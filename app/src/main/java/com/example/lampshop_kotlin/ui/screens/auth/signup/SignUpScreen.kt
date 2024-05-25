@@ -1,4 +1,4 @@
-package com.example.lampshop_kotlin.ui.signup
+package com.example.lampshop_kotlin.ui.screens.auth.signup
 
 import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
@@ -48,7 +48,7 @@ import androidx.compose.ui.unit.dp
 import com.example.lampshop_kotlin.R
 import com.example.lampshop_kotlin.ui.components.HeaderText
 import com.example.lampshop_kotlin.ui.components.LoginTextField
-import com.example.lampshop_kotlin.ui.login.defaultPadding
+import com.example.lampshop_kotlin.ui.screens.auth.login.defaultPadding
 
 @Composable
 fun SignUpScreen(

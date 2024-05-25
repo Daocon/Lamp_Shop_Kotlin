@@ -1,4 +1,4 @@
-package com.example.lampshop_kotlin.ui.src
+package com.example.lampshop_kotlin.ui.screens.splash
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

@@ -70,9 +70,10 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    val nav_version = "2.7.7"
+    val nav_version = "2.7.0"
 
     implementation("androidx.navigation:navigation-compose:$nav_version")
+//    implementation("androidx.navigation:navigation-compose:2.4.0-alpha10")
 
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -84,4 +85,10 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.4.0")
 
     implementation (libs.logging.interceptor)
+
+    // Hilt
+    implementation("com.google.dagger:hilt-android:2.47")
+//    kapt("com.google.dagger:hilt-compiler:2.47")
+    annotationProcessor("com.google.dagger:hilt-compiler:2.47")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 }

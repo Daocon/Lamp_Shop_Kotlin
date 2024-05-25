@@ -1,30 +1,23 @@
-package com.example.lampshop_kotlin
+package com.example.lampshop_kotlin.navigation
 
-import android.widget.Toast
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.example.lampshop_kotlin.api.viewModel.LampViewModel
-import com.example.lampshop_kotlin.ui.src.HomeScreen
-import com.example.lampshop_kotlin.ui.src.StartScreen
-import com.example.lampshop_kotlin.ui.login.LoginScreen
-import com.example.lampshop_kotlin.ui.signup.SignUpScreen
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.asFlow
+import com.example.lampshop_kotlin.ui.screens.auth.login.LoginScreen
+import com.example.lampshop_kotlin.ui.screens.auth.signup.SignUpScreen
+import com.example.lampshop_kotlin.ui.screens.main.MainScreen
+import com.example.lampshop_kotlin.ui.screens.splash.StartScreen
 
 sealed class Route{
-    data class StartScreen(val name:String = "Start"):Route()
-    data class LoginScreen(val name:String = "Login"):Route()
-    data class SignupScreen(val name:String = "Signup"):Route()
-    data class HomeScreen(val name:String = "Home"):Route()
+    data class StartScreen(val name:String = "Start"): Route()
+    data class LoginScreen(val name:String = "Login"): Route()
+    data class SignupScreen(val name:String = "Signup"): Route()
+    data class MainScreen(val name:String = "Main"): Route()
 }
 
 @Composable
@@ -41,7 +34,7 @@ fun MyNavigation(navHostController: NavHostController){
                 LoginScreen(
                     onLoginClick = {
                         navHostController.navigate(
-                            Route.HomeScreen().name
+                            Route.MainScreen().name
                         ){
                             popUpTo(route = "auth_flow")
                         }
@@ -66,7 +59,7 @@ fun MyNavigation(navHostController: NavHostController){
                 SignUpScreen(
                     onSignUpClick = {
                         navHostController.navigate(
-                            Route.HomeScreen().name
+                            Route.MainScreen().name
                         ){
                             popUpTo(route= "auth_flow")
                         }
@@ -79,8 +72,8 @@ fun MyNavigation(navHostController: NavHostController){
                 )
             }
         }
-        composable(route = Route.HomeScreen().name){
-            HomeScreen()
+        composable(route = Route.MainScreen().name){
+            MainScreen()
         }
     }
 }

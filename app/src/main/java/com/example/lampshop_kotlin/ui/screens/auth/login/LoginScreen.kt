@@ -1,4 +1,4 @@
-package com.example.lampshop_kotlin.ui.login
+package com.example.lampshop_kotlin.ui.screens.auth.login
 
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
