@@ -1,6 +1,7 @@
 package com.example.lampshop_kotlin.navigation
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Notifications
@@ -17,10 +18,10 @@ sealed class BottomBarScreen(
         title = "Home",
         icon = Icons.Default.Home
     )
-    object Detail : BottomBarScreen(
-        route = "detail",
-        title = "Detail",
-        icon = Icons.Default.Info
+    object Favorite : BottomBarScreen(
+        route = "favorite",
+        title = "Favorite",
+        icon = Icons.Default.Favorite
     )
     object Notify : BottomBarScreen(
         route = "notify",
@@ -31,5 +32,10 @@ sealed class BottomBarScreen(
         route = "profile",
         title = "Profile",
         icon = Icons.Default.Person
+    )
+    object Detail : BottomBarScreen(
+        route = "detail",
+        title = "Detail",
+        icon = Icons.Default.Info
     )
 }

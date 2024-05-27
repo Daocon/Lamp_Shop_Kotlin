@@ -11,3 +11,13 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 val xanh = Color(0xFF28048F)
+
+val GreyTileText = Color(0xFF606060)
+val BlackText = Color(0xFF303030)
+val GreyText = Color(0xFF808080)
+val WhiteText = Color(0xFFFFFFFF)
+val LineColor = Color(0xFFBDBDBD)
+val PrimaryColor = Color(0xFF242424)
+val GreyLight = Color(0xFF909090)
+val BackgroundCategory = Color(0xFFF0F0F0)
+val QuantityColor = Color(0xFFE0E0E0)

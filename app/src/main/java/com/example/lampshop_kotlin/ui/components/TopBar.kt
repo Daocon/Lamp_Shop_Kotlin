@@ -16,12 +16,13 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyAppBar(showSearchIcon: Boolean, title: String) {
+fun MyAppBar(showSearchIcon: Boolean, title: String, iconLeft: ImageVector, iconRight: ImageVector) {
     TopAppBar(
         title = {
             Row(
@@ -30,15 +31,15 @@ fun MyAppBar(showSearchIcon: Boolean, title: String) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(onClick = { /* Handle navigation icon press */ }) {
-                    Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+                    Icon(iconLeft, contentDescription = "Back")
                 }
                 Text(text = title)
                 if (showSearchIcon) {
                     IconButton(onClick = { /* Handle search icon press */ }) {
-                        Icon(Icons.Filled.Search, contentDescription = "Search")
+                        Icon(iconRight, contentDescription = "Search")
                     }
                 } else {
-                    Spacer(modifier = Modifier.size(48.dp)) // Replace 48.dp with the size of your IconButton
+                    Spacer(modifier = Modifier.size(48.dp))
                 }
             }
         }
@@ -48,5 +49,7 @@ fun MyAppBar(showSearchIcon: Boolean, title: String) {
 @Preview
 @Composable
 fun PreviewMyAppBar() {
-    MyAppBar(showSearchIcon = false, title = "HomeScreen")
+
+MyAppBar(showSearchIcon = true, title = "Home", iconLeft = Icons.Filled.ArrowBack, iconRight = Icons.Filled.Search)
+
 }

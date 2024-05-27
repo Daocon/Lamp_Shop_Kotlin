@@ -91,4 +91,7 @@ dependencies {
 //    kapt("com.google.dagger:hilt-compiler:2.47")
     annotationProcessor("com.google.dagger:hilt-compiler:2.47")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+
+    // Foundation
+    implementation(libs.androidx.foundation)
 }

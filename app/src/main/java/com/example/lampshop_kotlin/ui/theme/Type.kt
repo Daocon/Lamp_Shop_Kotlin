@@ -2,12 +2,20 @@ package com.example.lampshop_kotlin.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.example.lampshop_kotlin.R
+
+val gelasioFont = FontFamily(Font(R.font.gelasio))
+val merriweatherFont = FontFamily(Font(R.font.merriweather))
+val nunitoSansFont = FontFamily(Font(R.font.nunito_sans))
+val nunitoSansBoldFont = FontFamily(Font(R.font.nunito_sans_extrabold))
 
 // Set of Material typography styles to start with
 val Typography = Typography(
+
     bodyLarge = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
