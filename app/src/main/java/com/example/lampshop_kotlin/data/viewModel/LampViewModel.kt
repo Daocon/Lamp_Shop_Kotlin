@@ -1,11 +1,11 @@
-package com.example.lampshop_kotlin.api.viewModel
+package com.example.lampshop_kotlin.data.viewModel
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.lampshop_kotlin.api.model.Lamp
-import com.example.lampshop_kotlin.api.network.ApiService
+import com.example.lampshop_kotlin.data.model.Lamp
+import com.example.lampshop_kotlin.data.network.ApiService
 import kotlinx.coroutines.launch
 
 class LampViewModel : ViewModel() {

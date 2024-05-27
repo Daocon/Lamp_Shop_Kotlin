@@ -1,6 +1,4 @@
-package com.example.lampshop_kotlin.api.model
-
-import com.google.gson.annotations.SerializedName
+package com.example.lampshop_kotlin.data.model
 
 data class Lamp(
     val id : String,
