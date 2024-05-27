@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.lampshop_kotlin.ui.screens.detail.DetailScreen
 import com.example.lampshop_kotlin.ui.screens.favorite.FavoriteScreen
 import com.example.lampshop_kotlin.ui.screens.home.HomeScreen
 import com.example.lampshop_kotlin.ui.screens.notification.NotificationScreen
@@ -26,6 +27,9 @@ fun BottomNavGraph(navController: NavHostController) {
         }
         composable(route = BottomBarScreen.Profile.route){
             ProfileScreen()
+        }
+        composable(route = BottomBarScreen.Detail.route){
+            DetailScreen(navController = navController)
         }
 
     }
