@@ -28,6 +28,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -43,6 +44,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -50,7 +52,7 @@ import com.example.lampshop_kotlin.R
 import com.example.lampshop_kotlin.domain.model.product.Product
 import com.example.lampshop_kotlin.ui.components.QuantityButton
 import com.example.lampshop_kotlin.ui.screens.detail.component.AutoSlidingCarousel
-import com.example.lampshop_kotlin.ui.screens.detail.component.SelectColor
+//import com.example.lampshop_kotlin.ui.screens.detail.component.SelectColor
 import com.example.lampshop_kotlin.ui.theme.BlackText
 import com.example.lampshop_kotlin.ui.theme.GreyText
 import com.example.lampshop_kotlin.ui.theme.QuantityColor
@@ -62,18 +64,13 @@ import com.example.lampshop_kotlin.ui.theme.nunitoSansFont
 @Composable
 fun DetailScreen(
     navController: NavController?,
+    lampId: String?,
     modifier: Modifier = Modifier,
 ) {
-    val product = Product(
-        productId = 1,
-        name = "Lamp",
-        price = 100,
-        description = "Lamp",
-        colors = listOf("red", "green", "blue"),
-        images = listOf("https://images.urbndata.com/is/image/UrbanOutfitters/82877101_020_b?"),
-        createdAt = "2021-10-10",
-        categoryId = 5
-    )
+    val viewModel: LampDetailViewModel = viewModel()
+    viewModel.getLampByID(lampId ?: "")
+    val product by viewModel.lamp.observeAsState()
+
     val context = LocalContext.current
     var quantity by remember { mutableIntStateOf(1) }
     var colorSelect by remember { mutableIntStateOf(0) }
@@ -95,18 +92,19 @@ fun DetailScreen(
                         shape = RoundedCornerShape(bottomStart = 60.dp),
                     ) {
                         if (product != null) {
-                            AutoSlidingCarousel(
-                                itemsCount = product.images.size,
-                                itemContent = { index ->
-                                    AsyncImage(
-                                        model = ImageRequest.Builder(LocalContext.current)
-                                            .data(product.images[index])
-                                            .build(),
-                                        contentDescription = null,
-                                        contentScale = ContentScale.FillWidth,
-                                        modifier = Modifier.height(450.dp)
-                                    )
-                                }
+//                            AutoSlidingCarousel(
+//                                itemsCount = product!!.image.length,
+//                                itemContent = { index ->
+//
+//                                }
+//                            )
+                            AsyncImage(
+                                model = ImageRequest.Builder(LocalContext.current)
+                                    .data(product!!.image)
+                                    .build(),
+                                contentDescription = null,
+                                contentScale = ContentScale.FillWidth,
+                                modifier = Modifier.height(450.dp)
                             )
                         }
                     }
@@ -143,13 +141,13 @@ fun DetailScreen(
                             },
                             contentPadding = PaddingValues(15.dp)
                         )
-                        SelectColor(
-                            product = product,
-                            selectIndex = colorSelect,
-                            onClick = {
-                                colorSelect = it
-                            }
-                        )
+//                        SelectColor(
+//                            product = product,
+//                            selectIndex = colorSelect,
+//                            onClick = {
+//                                colorSelect = it
+//                            }
+//                        )
 
                     }
                 }

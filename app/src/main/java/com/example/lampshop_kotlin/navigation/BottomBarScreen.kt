@@ -6,6 +6,7 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.ui.graphics.vector.ImageVector
 
 sealed class BottomBarScreen(
@@ -37,5 +38,16 @@ sealed class BottomBarScreen(
         route = "detail",
         title = "Detail",
         icon = Icons.Default.Info
+    )
+    object Cart : BottomBarScreen(
+        route = "cart",
+        title = "Cart",
+        icon = Icons.Default.ShoppingCart
+    )
+
+    object CheckOut : BottomBarScreen(
+        route = "checkout",
+        title = "CheckOut",
+        icon = Icons.Default.ShoppingCart
     )
 }

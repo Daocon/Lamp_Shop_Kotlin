@@ -10,7 +10,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.lampshop_kotlin.ui.screens.auth.login.LoginScreen
 import com.example.lampshop_kotlin.ui.screens.auth.signup.SignUpScreen
+import com.example.lampshop_kotlin.ui.screens.checkout.CheckOutScreen
 import com.example.lampshop_kotlin.ui.screens.detail.DetailScreen
+import com.example.lampshop_kotlin.ui.screens.home.HomeScreen
 import com.example.lampshop_kotlin.ui.screens.main.MainScreen
 import com.example.lampshop_kotlin.ui.screens.splash.StartScreen
 
@@ -20,12 +22,12 @@ sealed class Route{
     data class SignupScreen(val name:String = "Signup"): Route()
     data class MainScreen(val name:String = "Main"): Route()
     data class DetailScreen(val name:String = "Detail"): Route()
+
+    data class HomeScreen(val name:String = "Home"): Route()
 }
 
 @Composable
 fun MyNavigation(navHostController: NavHostController){
-
-    var context = LocalContext.current
 
     NavHost(
         navController = navHostController,
@@ -72,9 +74,6 @@ fun MyNavigation(navHostController: NavHostController){
                         )
                     }
                 )
-            }
-            composable(route = Route.DetailScreen().name) {
-                DetailScreen(navHostController)
             }
         }
         composable(route = Route.MainScreen().name){

@@ -15,6 +15,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -27,12 +28,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.lampshop_kotlin.R
-import com.example.lampshop_kotlin.domain.model.product.Product
 import com.example.lampshop_kotlin.navigation.BottomBarScreen
 import com.example.lampshop_kotlin.ui.screens.home.component.CategoryTabBar
-import com.example.lampshop_kotlin.ui.screens.home.component.ProductCard
+import com.example.lampshop_kotlin.ui.screens.home.component.LampCard
+//import com.example.lampshop_kotlin.ui.screens.home.component.ProductCard
 import com.example.lampshop_kotlin.ui.theme.GreyLight
 import com.example.lampshop_kotlin.ui.theme.PrimaryColor
 import com.example.lampshop_kotlin.ui.theme.gelasioFont
@@ -40,7 +42,11 @@ import com.example.lampshop_kotlin.ui.theme.merriweatherFont
 
 
 @Composable
-fun HomeScreen(navController: NavController,) {
+fun HomeScreen(navController: NavController) {
+
+    val lampViewModel: LampViewModel = viewModel()
+    val lampsState = lampViewModel.lamps.observeAsState(initial = emptyList())
+    val lamps = lampsState.value
 
     var categorySelect by rememberSaveable {
         mutableIntStateOf(0)
@@ -126,29 +132,25 @@ fun HomeScreen(navController: NavController,) {
         ) {
             LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
-                horizontalArrangement = Arrangement.Center,
                 contentPadding = PaddingValues(start = 30.dp, end = 0.dp)
             ) {
-                if (listProduct != null) {
-                    if (listProduct.isNotEmpty()) {
+                if (lamps != null) {
+                    if (lamps.isNotEmpty()) {
                         if (categorySelect == 0) {
-                            listProduct.forEach { product ->
+                            lamps.forEach { product ->
                                 item {
-                                    ProductCard(
-                                        product = product,
-                                        onAddToCart = {
-                                        },
+                                    LampCard(
+                                        lamp = product,
+                                        onAddToCart = {},
                                         onProductClick = {
-                                            navController.navigate(
-                                                BottomBarScreen.Detail.route
-                                            )
+                                            navController.navigate("${BottomBarScreen.Detail.route}/${product.id}")
                                         }
                                     )
                                 }
                             }
                         } else {
-                            val filteredList = listProduct.filter {
-                                it.categoryId == categorySelect
+                            val filteredList = lamps.filter {
+                                it.id_category == categorySelect.toString()
                             }
                             if (filteredList.isEmpty()) {
                                 item {
@@ -166,11 +168,12 @@ fun HomeScreen(navController: NavController,) {
                             } else {
                                 filteredList.forEach { product ->
                                     item {
-                                        ProductCard(
-                                            product = product,
+                                        LampCard(
+                                            lamp = product,
                                             onAddToCart = {
                                             },
                                             onProductClick = {
+                                                navController.navigate(BottomBarScreen.Detail.route)
                                             }
                                         )
                                     }
@@ -196,44 +199,6 @@ fun HomeScreen(navController: NavController,) {
         }
     }
 }
-
-val listProduct = listOf<Product>(
-    Product(
-        productId = 1,
-        name = "Lamp",
-        price = 100,
-        description = "Lamp",
-        colors = listOf("red", "green", "blue"),
-        images = listOf("https://images.urbndata.com/is/image/UrbanOutfitters/82877101_020_b?"),
-        createdAt = "2021-10-10",
-        categoryId = 5
-    ),
-    Product(
-        productId = 2,
-        name = "Chair",
-        price = 200,
-        description = "Chair",
-        colors = listOf("red", "green", "blue"),
-        images = listOf("https://images.urbndata.com/is/image/UrbanOutfitters/82877101_020_b?"),
-        createdAt = "2021-10-10",
-        categoryId = 1
-    ),
-    Product(
-        productId = 3,
-        name = "Table",
-        price = 300,
-        description = "Table",
-        colors = listOf("red", "green", "blue"),
-        images = listOf("https://images.urbndata.com/is/image/UrbanOutfitters/82877101_020_b?"),
-        createdAt = "2021-10-10",
-        categoryId = 3
-    ),
-)
-
-
-
-
-
 
 
 @Preview(showBackground = true)

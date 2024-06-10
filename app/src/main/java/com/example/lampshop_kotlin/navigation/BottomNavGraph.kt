@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.lampshop_kotlin.ui.screens.cart.CartScreen
+import com.example.lampshop_kotlin.ui.screens.checkout.CheckOutScreen
 import com.example.lampshop_kotlin.ui.screens.detail.DetailScreen
 import com.example.lampshop_kotlin.ui.screens.favorite.FavoriteScreen
 import com.example.lampshop_kotlin.ui.screens.home.HomeScreen
@@ -22,14 +24,15 @@ fun BottomNavGraph(navController: NavHostController) {
         composable(route = BottomBarScreen.Favorite.route){
             FavoriteScreen()
         }
-        composable(route = BottomBarScreen.Notify.route){
-            NotificationScreen()
+        composable(route = BottomBarScreen.CheckOut.route){
+            CheckOutScreen(navController)
         }
         composable(route = BottomBarScreen.Profile.route){
             ProfileScreen()
         }
-        composable(route = BottomBarScreen.Detail.route){
-            DetailScreen(navController = navController)
+        composable(route = BottomBarScreen.Detail.route + "/{lampId}") { backStackEntry ->
+            val lampId = backStackEntry.arguments?.getString("lampId")
+            DetailScreen(navController = navController, lampId = lampId)
         }
 
     }

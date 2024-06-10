@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.lampshop_kotlin.R
+import com.example.lampshop_kotlin.domain.model.Lamp.Lamp
 import com.example.lampshop_kotlin.domain.model.product.Product
 import com.example.lampshop_kotlin.ui.theme.BlackText
 import com.example.lampshop_kotlin.ui.theme.GreyText
@@ -34,11 +35,11 @@ import com.example.lampshop_kotlin.ui.theme.WhiteText
 import com.example.lampshop_kotlin.ui.theme.nunitoSansFont
 
 @Composable
-fun ProductCard(
+fun LampCard(
     modifier: Modifier = Modifier,
-    product: Product,
-    onAddToCart: (Product) -> Unit,
-    onProductClick: (Product) -> Unit = {},
+    lamp: Lamp,
+    onAddToCart: (Lamp) -> Unit,
+    onProductClick: (Lamp) -> Unit
 ) {
     Column {
         Box(
@@ -48,13 +49,13 @@ fun ProductCard(
                     shape = RoundedCornerShape(10.dp)
                 )
                 .clickable {
-                    onProductClick(product)
+                    onProductClick(lamp)
                 },
             contentAlignment = Alignment.CenterStart
         ) {
             AsyncImage(
-                model = product.images.first(),
-                contentDescription = product.name,
+                model = lamp.image,
+                contentDescription = lamp.name,
                 modifier = Modifier
                     .height(250.dp)
                     .width(160.dp)
@@ -84,14 +85,14 @@ fun ProductCard(
                     modifier = Modifier
                         .size(20.dp)
                         .clickable {
-                            onAddToCart(product)
+//                            onAddToCart(product)
                         },
                     tint = WhiteText
                 )
             }
         }
         Text(
-            text = product.name, style = TextStyle(
+            text = lamp.name, style = TextStyle(
                 fontFamily = nunitoSansFont,
                 color = GreyText,
                 fontSize = 16.sp,
@@ -105,7 +106,7 @@ fun ProductCard(
             overflow = TextOverflow.Ellipsis
         )
         Text(
-            text = "$ ${product.price}.00", style = TextStyle(
+            text = "$ ${lamp.price}.00", style = TextStyle(
                 fontFamily = nunitoSansFont,
                 color = BlackText,
                 fontSize = 14.sp,

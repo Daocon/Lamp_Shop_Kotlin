@@ -23,7 +23,7 @@ import com.example.lampshop_kotlin.ui.theme.GreyLight
 
 
 @Composable
-fun SelectColor(
+fun SelectColora(
     product: Product?,
     onClick: (Int) -> Unit,
     selectIndex: Int

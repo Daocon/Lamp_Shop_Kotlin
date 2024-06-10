@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.lampshop_kotlin.R
 import com.example.lampshop_kotlin.ui.screens.favorite.component.FavoriteCard
-import com.example.lampshop_kotlin.ui.screens.home.listProduct
+//import com.example.lampshop_kotlin.ui.screens.home.listProduct
 import com.example.lampshop_kotlin.ui.theme.PrimaryColor
 import com.example.lampshop_kotlin.ui.theme.gelasioFont
 import com.example.lampshop_kotlin.ui.theme.nunitoSansFont
@@ -93,18 +93,18 @@ fun FavoriteScreen() {
 
             }
 
-            items(listProduct.size) { index ->
-                val favorite = listProduct[index]
-                FavoriteCard(
-                    product = favorite,
-                    onFavoriteClick = {
-                    },
-                    onDeleteFavoriteClick = {
-                    },
-                    onAddFavoriteToBagClick = {
-                    }
-                )
-            }
+//            items(listProduct.size) { index ->
+//                val favorite = listProduct[index]
+//                FavoriteCard(
+//                    product = favorite,
+//                    onFavoriteClick = {
+//                    },
+//                    onDeleteFavoriteClick = {
+//                    },
+//                    onAddFavoriteToBagClick = {
+//                    }
+//                )
+//            }
         }
         Button(
             onClick = {

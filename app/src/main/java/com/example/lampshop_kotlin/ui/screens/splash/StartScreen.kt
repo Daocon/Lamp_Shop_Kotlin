@@ -1,6 +1,7 @@
 package com.example.lampshop_kotlin.ui.screens.splash
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,6 +10,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -63,9 +66,23 @@ fun StartScreen(onStartClick: () -> Unit) {
                     containerColor = Color(0xA33DBBA2)
                 ),
                 modifier = Modifier.fillMaxWidth()
+                    .width(60.dp)
+                    .height(80.dp)
+                    .padding(start = 30.dp, end = 30.dp, bottom = 10.dp)
+                    .border(
+                        color = Color.White,
+                        width = 5.dp,
+                        shape = RoundedCornerShape(20.dp)
+                    )
+                ,
+                shape = RoundedCornerShape(20.dp)
             ) {
-                Text(text = "Get Started")
+                Text(
+                    text = "Get Started",
+                    style = TextStyle(fontSize = 25.sp, fontWeight = FontWeight.Bold)
+                )
             }
+            Spacer(modifier = Modifier.height(150.dp))
         }
     }
 }
