@@ -1,6 +1,10 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-parcelize")
+    kotlin("plugin.serialization")
+    id("com.google.devtools.ksp")
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -85,15 +89,13 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.4.0")
 
     implementation (libs.logging.interceptor)
-
-    // Hilt
-    implementation("com.google.dagger:hilt-android:2.47")
-    //    kapt("com.google.dagger:hilt-compiler:2.47")
-    annotationProcessor("com.google.dagger:hilt-compiler:2.47")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
-
     // Foundation
     implementation(libs.androidx.foundation)
     // ConstraintLayout
     implementation(libs.androidx.constraintlayout.compose)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation.compose)
+    ksp(libs.hilt.compiler)
 }

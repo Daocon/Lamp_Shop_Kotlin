@@ -4,30 +4,32 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.lampshop_kotlin.data.network.ApiService
 import com.example.lampshop_kotlin.data.network.LampService
 import com.example.lampshop_kotlin.data.network.request.LoginRequest
 import com.example.lampshop_kotlin.data.network.response.LoginResponse
+import com.example.lampshop_kotlin.domain.repository.LampRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel(private val lampService: LampService) : ViewModel() {
-    private val _loginResult = MutableLiveData<Result<LoginResponse>>()
-    val loginResult: LiveData<Result<LoginResponse>> = _loginResult
+@HiltViewModel
+class LoginViewModel @Inject constructor(
+    private val lampRepository: LampRepository
+) : ViewModel() {
 
-    fun login(username: String, password: String, onLoginSuccess: () -> Unit) {
+    private val _canNavigate = Channel<Boolean> {  }
+    val canNavigate = _canNavigate.receiveAsFlow()
+
+    fun login(username: String, password: String) {
         viewModelScope.launch {
-            val response = try {
-                val result = lampService.login(LoginRequest(username, password))
-                if (result.isSuccessful && result.body()?.status == 200) {
-                    onLoginSuccess()
-                    Result.success(result.body()!!)
-                } else {
-                    Result.failure(RuntimeException("Failed to login"))
-                }
-            } catch (e: Exception) {
-                Result.failure(e)
+            val response = lampRepository.login(username, password)
+            if (response.isSuccessful) {
+                _canNavigate.send(true)
+            } else {
+                _canNavigate.send(false)
             }
-            _loginResult.value = response
         }
     }
 }

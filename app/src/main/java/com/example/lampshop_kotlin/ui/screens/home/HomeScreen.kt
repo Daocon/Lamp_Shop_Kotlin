@@ -28,10 +28,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.lampshop_kotlin.R
-import com.example.lampshop_kotlin.navigation.BottomBarScreen
+import com.example.lampshop_kotlin.core.navigation.BottomBarScreen
 import com.example.lampshop_kotlin.ui.screens.home.component.CategoryTabBar
 import com.example.lampshop_kotlin.ui.screens.home.component.LampCard
 //import com.example.lampshop_kotlin.ui.screens.home.component.ProductCard
@@ -42,9 +43,11 @@ import com.example.lampshop_kotlin.ui.theme.merriweatherFont
 
 
 @Composable
-fun HomeScreen(navController: NavController) {
+fun HomeScreen(
+    navController: NavController,
+    lampViewModel: LampViewModel = hiltViewModel()
+) {
 
-    val lampViewModel: LampViewModel = viewModel()
     val lampsState = lampViewModel.lamps.observeAsState(initial = emptyList())
     val lamps = lampsState.value
 

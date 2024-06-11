@@ -1,4 +1,4 @@
-package com.example.lampshop_kotlin.navigation
+package com.example.lampshop_kotlin.core.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
@@ -47,7 +47,8 @@ fun MyNavigation(navHostController: NavHostController){
                         navHostController.navigateToSingleTop(
                             Route.SignupScreen().name
                         )
-                    }
+                    },
+                    navController = navHostController
                 )
             }
             composable(route = Route.StartScreen().name){

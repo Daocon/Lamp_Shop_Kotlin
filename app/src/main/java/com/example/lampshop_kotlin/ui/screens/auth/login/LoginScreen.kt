@@ -1,5 +1,6 @@
 package com.example.lampshop_kotlin.ui.screens.auth.login
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -29,6 +30,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -41,7 +44,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.lampshop_kotlin.R
 import com.example.lampshop_kotlin.data.network.LampService
 import com.example.lampshop_kotlin.data.network.response.LoginResponse
@@ -52,15 +57,17 @@ val defaultPadding = 16.dp
 val itemSpacing = 8.dp
 
 @Composable
-fun LoginScreen(onSignUpClick: () -> Unit, onLoginClick: () -> Unit) {
+fun LoginScreen(
+    onSignUpClick: () -> Unit,
+    onLoginClick: () -> Unit,
+    viewModel: LoginViewModel = hiltViewModel(),
+    navController: NavController
+) {
     val context = LocalContext.current
-//    val lampService = LampService()
-//    val viewModel: LoginViewModel = viewModel(factory = LoginViewModelFactory(lampService))
-
     val (email, setEmail) = rememberSaveable {
         mutableStateOf("")
     }
-    val (password, setPassoword) = rememberSaveable {
+    val (password, setPassword) = rememberSaveable {
         mutableStateOf("")
     }
     val (checked, onCheckedChange) = rememberSaveable {
@@ -68,6 +75,14 @@ fun LoginScreen(onSignUpClick: () -> Unit, onLoginClick: () -> Unit) {
     }
 
     val isFieldEmpty = email.isNotEmpty() && password.isNotEmpty()
+
+    val canNavigate = viewModel.canNavigate.collectAsState(initial = false).value
+    LaunchedEffect(key1 = canNavigate) {
+        Log.d("LoginScreen", "LoginResult: $canNavigate")
+       if (canNavigate) {
+           navController.navigate("main")
+       }
+    }
 
     Column(
         modifier = Modifier
@@ -99,7 +114,7 @@ fun LoginScreen(onSignUpClick: () -> Unit, onLoginClick: () -> Unit) {
         Spacer(modifier = Modifier.height(itemSpacing))
         LoginTextField(
             value = password,
-            onValueChange = setPassoword,
+            onValueChange = setPassword,
             labelText = "Password",
             leadingIcon = Icons.Default.Lock,
             modifier = Modifier.fillMaxWidth(),
@@ -130,13 +145,14 @@ fun LoginScreen(onSignUpClick: () -> Unit, onLoginClick: () -> Unit) {
             }
         }
 
-        //elevation = ButtonDefaults.buttonElevation(
-        //                defaultElevation = 6.dp,
-        //                pressedElevation = 10.dp,
-        //            ),
-
         Button(
-            onClick = onLoginClick,
+            onClick = {
+                viewModel.login(
+                    username = email,
+                    password = password
+                )
+
+            },
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xA33DBBA2)
             ),
@@ -221,10 +237,3 @@ fun AnotherOption(
 }
 
 
-@Preview(showSystemUi = true)
-@Composable
-fun PreLogin() {
-    MaterialTheme {
-//        LoginScreen({}, {})
-    }
-}

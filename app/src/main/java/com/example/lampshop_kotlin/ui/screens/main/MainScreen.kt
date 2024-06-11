@@ -15,8 +15,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.lampshop_kotlin.navigation.BottomBarScreen
-import com.example.lampshop_kotlin.navigation.BottomNavGraph
+import com.example.lampshop_kotlin.core.navigation.BottomBarScreen
+import com.example.lampshop_kotlin.core.navigation.BottomNavGraph
 
 @Composable
 fun MainScreen() {

@@ -44,6 +44,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
@@ -66,8 +67,8 @@ fun DetailScreen(
     navController: NavController?,
     lampId: String?,
     modifier: Modifier = Modifier,
+    viewModel: LampDetailViewModel = hiltViewModel()
 ) {
-    val viewModel: LampDetailViewModel = viewModel()
     viewModel.getLampByID(lampId ?: "")
     val product by viewModel.lamp.observeAsState()
 

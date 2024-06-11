@@ -1,4 +1,4 @@
-package com.example.lampshop_kotlin.navigation
+package com.example.lampshop_kotlin.core.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
