@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.lampshop_kotlin.domain.model.Lamp.Lamp
+import com.example.lampshop_kotlin.domain.model.lamp.Lamp
 import com.example.lampshop_kotlin.data.network.ApiService
 import com.example.lampshop_kotlin.data.network.LampResponse
 import kotlinx.coroutines.launch

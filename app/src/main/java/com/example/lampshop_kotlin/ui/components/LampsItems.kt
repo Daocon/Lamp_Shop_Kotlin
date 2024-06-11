@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import com.example.lampshop_kotlin.domain.model.Lamp.Lamp
+import com.example.lampshop_kotlin.domain.model.lamp.Lamp
 
 @Composable
 fun LampsItems(lamp: Lamp) {

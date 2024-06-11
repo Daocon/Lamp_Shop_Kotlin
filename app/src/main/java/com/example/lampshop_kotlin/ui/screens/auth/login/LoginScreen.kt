@@ -41,7 +41,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.lampshop_kotlin.R
+import com.example.lampshop_kotlin.data.network.LampService
+import com.example.lampshop_kotlin.data.network.response.LoginResponse
 import com.example.lampshop_kotlin.ui.components.HeaderText
 import com.example.lampshop_kotlin.ui.components.LoginTextField
 
@@ -51,6 +54,8 @@ val itemSpacing = 8.dp
 @Composable
 fun LoginScreen(onSignUpClick: () -> Unit, onLoginClick: () -> Unit) {
     val context = LocalContext.current
+//    val lampService = LampService()
+//    val viewModel: LoginViewModel = viewModel(factory = LoginViewModelFactory(lampService))
 
     val (email, setEmail) = rememberSaveable {
         mutableStateOf("")
@@ -81,7 +86,8 @@ fun LoginScreen(onSignUpClick: () -> Unit, onLoginClick: () -> Unit) {
         Image(
             painter = painterResource(id = R.drawable.lamp),
             contentDescription = "Logo Lamp",
-            modifier = Modifier.size(150.dp))
+            modifier = Modifier.size(150.dp)
+        )
         Spacer(modifier = Modifier.height(itemSpacing))
         LoginTextField(
             value = email,
@@ -219,6 +225,6 @@ fun AnotherOption(
 @Composable
 fun PreLogin() {
     MaterialTheme {
-        LoginScreen({}, {})
+//        LoginScreen({}, {})
     }
 }

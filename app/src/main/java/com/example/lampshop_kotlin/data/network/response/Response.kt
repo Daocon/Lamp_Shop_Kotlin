@@ -1,4 +1,4 @@
-package com.example.lampshop_kotlin.data.network.Responsive
+package com.example.lampshop_kotlin.data.network.response
 
 import com.example.lampshop_kotlin.data.network.LampResponse
 

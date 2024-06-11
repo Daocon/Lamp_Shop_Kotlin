@@ -27,8 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.lampshop_kotlin.R
-import com.example.lampshop_kotlin.domain.model.Lamp.Lamp
-import com.example.lampshop_kotlin.domain.model.product.Product
+import com.example.lampshop_kotlin.domain.model.lamp.Lamp
 import com.example.lampshop_kotlin.ui.theme.BlackText
 import com.example.lampshop_kotlin.ui.theme.GreyText
 import com.example.lampshop_kotlin.ui.theme.WhiteText

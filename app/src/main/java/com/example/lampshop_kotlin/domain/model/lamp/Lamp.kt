@@ -1,4 +1,4 @@
-package com.example.lampshop_kotlin.domain.model.Lamp
+package com.example.lampshop_kotlin.domain.model.lamp
 
 data class Lamp(
     val id : String = "",

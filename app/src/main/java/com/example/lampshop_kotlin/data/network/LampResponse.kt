@@ -10,5 +10,4 @@ data class LampResponse(
     @SerializedName("price") val price: String,
     @SerializedName("rate") val rate: String,
     @SerializedName("description") val description: String,
-
 )

@@ -1,5 +1,6 @@
 package com.example.lampshop_kotlin.ui.screens.profile
 
+import android.app.Activity
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -93,7 +94,7 @@ fun ProfileScreen(navController: NavController = rememberNavController()) {
                         .weight(1f)
                         .padding(5.dp)
                         .clickable {
-                            openAlertDialog.value = true
+                            (context as Activity).finishAffinity()
                         }
                 )
             }
@@ -142,7 +143,6 @@ fun ProfileScreen(navController: NavController = rememberNavController()) {
                         modifier = Modifier.padding(bottom = 20.dp)
                     )
                 }
-
             }
         }
         item {
